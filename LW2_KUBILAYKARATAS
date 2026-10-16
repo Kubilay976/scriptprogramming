@@ -1,0 +1,57 @@
+% 1. Vectors
+a = 1:2:34;
+b = exp(a);
+c = a ./ b;
+
+disp(a')
+disp(b')
+disp(c')
+
+% 2. Matrices
+A = [pi/2, 3i; log2(2), 2*pi];
+B = [A(1,1), A(1,2)];
+
+disp(A)
+disp(B)
+disp(sum(A))
+
+% 3. Practical applications
+t = 0:0.002:1.2;
+A = 5;
+f = 6;
+sigma = 1.5;
+U1 = 3;
+U2 = 2;
+
+s = A*sin(2*pi*f*t) + 0.5*A*cos(4*pi*f*t);
+n = sigma*randn(size(t));
+s = s + n;
+
+x = s(s > U1);
+sf = s;
+sf(abs(sf) < U2) = 0;
+
+disp('Selected samples:')
+disp(x)
+disp('Number of selected samples:')
+disp(sum(s > U1))
+disp('Number of samples:')
+disp(numel(s))
+disp('Minimum filtered voltage:')
+disp(min(sf))
+disp('Maximum filtered voltage:')
+disp(max(sf))
+
+% P1. Indexing of vector elements
+A = input('Enter vector A: ');
+A = A(:)';
+
+mask = true(size(A));
+mask([1 end]) = false;
+middle = A(mask);
+
+B = [A(1)*ones(1,4), middle, A(end)*ones(1,4)];
+
+disp('Generated B:')
+disp(B)
+
