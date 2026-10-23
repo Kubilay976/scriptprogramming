@@ -1,0 +1,54 @@
+clc;
+clear;
+
+% Task 1
+A = [1 2 3; 4 5 6; 7 8 9];
+C = num2cell(A);
+C{2,2} = [];
+disp(C);
+disp(cellfun(@isempty,C));
+
+% Task 2
+while true
+    n = input('Enter your age (0-120): ');
+
+    if n >= 0 && n <= 120 && n == fix(n)
+        break;
+    else
+        disp('Incorrect value. Try again.');
+    end
+end
+
+switch true
+    case n < 1
+        disp('Newborn');
+    case n < 13
+        disp('Child');
+    case n < 18
+        disp('Teenager');
+    case n < 60
+        disp('Grownup');
+    otherwise
+        disp('Elder');
+end
+
+% Task 3
+k = 1;
+while k <= 30
+    x = input('Enter x (1-5): ');
+    y = input('Enter y (1-5): ');
+
+    if x < 1 || x > 5 || y < 1 || y > 5 || ...
+            x ~= fix(x) || y ~= fix(y)
+        disp('Incorrect values. Try again.');
+        continue;
+    end
+
+    A = randi(10,x,y);
+    A(1,1) = NaN;
+    disp(A);
+
+    k = k + 1;
+    pause(1);
+    clc;
+end
